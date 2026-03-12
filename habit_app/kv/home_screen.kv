@@ -10,14 +10,14 @@
 
     MDBoxLayout:
         orientation: "vertical"
-        md_bg_color: app.theme_cls.backgroundColor
+        md_bg_color: app.theme_cls.bg_normal
 
         # ── Top App Bar ───────────────────────────────────────
         MDTopAppBar:
             title: "HabitFlow"
             right_action_items:
                 [["account-circle-outline", lambda x: root.on_profile_pressed(), "Profile"]]
-            md_bg_color: app.theme_cls.primaryColor
+            md_bg_color: app.theme_cls.primary_color
             specific_text_color: 1, 1, 1, 1
             elevation: 2
 
@@ -26,7 +26,7 @@
             size_hint_y: None
             height: dp(72)
             padding: dp(16), dp(8)
-            md_bg_color: app.theme_cls.primaryColor
+            md_bg_color: app.theme_cls.primary_color
             radius: [0, 0, dp(16), dp(16)]
             elevation: 1
 
@@ -57,6 +57,6 @@
         MDFloatingActionButton:
             icon: "plus"
             pos_hint: {"right": 0.95, "y": 0.04}
-            md_bg_color: app.theme_cls.primaryColor
+            md_bg_color: app.theme_cls.primary_color
             on_release: root.on_create_habit_pressed()
             elevation: 4

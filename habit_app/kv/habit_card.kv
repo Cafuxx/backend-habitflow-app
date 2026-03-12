@@ -13,7 +13,7 @@
     ripple_behavior: True
     elevation: 2
     radius: [dp(12)]
-    md_bg_color: app.theme_cls.surfaceColor
+    md_bg_color: app.theme_cls.bg_light
 
     # Tap anywhere on the card body → detail screen
     on_release: root.handle_tap()
@@ -29,7 +29,7 @@
             size: dp(40), dp(40)
             font_size: dp(32)
             theme_text_color: "Custom"
-            text_color: app.theme_cls.primaryColor
+            text_color: app.theme_cls.primary_color
             valign: "middle"
 
         # ── Name + progress bar ────────────────────────────────
@@ -50,7 +50,7 @@
             MDProgressBar:
                 value: root.percentage
                 max: 100
-                color: app.theme_cls.primaryColor if not root.is_complete else app.theme_cls.successColor
+                color: app.theme_cls.primary_color if not root.is_complete else app.theme_cls.accent_color
 
             MDLabel:
                 text: f"{root.progress:.0f} / {root.goal_value:.0f}"
@@ -69,7 +69,7 @@
             MDIconButton:
                 icon: "plus-circle-outline"
                 theme_text_color: "Custom"
-                text_color: app.theme_cls.primaryColor
+                text_color: app.theme_cls.primary_color
                 on_release: root.handle_increment()
 
             MDIconButton:

@@ -15,7 +15,7 @@
         orientation: "vertical"
         padding: dp(32)
         spacing: dp(16)
-        md_bg_color: app.theme_cls.backgroundColor
+        md_bg_color: app.theme_cls.bg_normal
 
         Widget:
             size_hint_y: 0.08  # top spacer
@@ -26,7 +26,7 @@
             halign: "center"
             font_size: dp(64)
             theme_text_color: "Custom"
-            text_color: app.theme_cls.primaryColor
+            text_color: app.theme_cls.primary_color
 
         MDLabel:
             text: "Create Account"
@@ -34,7 +34,7 @@
             font_style: "H5"
             bold: True
             theme_text_color: "Custom"
-            text_color: app.theme_cls.primaryColor
+            text_color: app.theme_cls.primary_color
 
         MDLabel:
             text: "Start building better habits today."
@@ -50,7 +50,7 @@
             id: email_field
             hint_text: "Email address"
             icon_right: "email-outline"
-            mode: "outlined"
+            mode: "rectangle"
             input_type: "mail"
             size_hint_x: 1
 
@@ -58,7 +58,7 @@
             id: password_field
             hint_text: "Password  (min 6 characters)"
             icon_right: "lock-outline"
-            mode: "outlined"
+            mode: "rectangle"
             password: True
             size_hint_x: 1
 
@@ -66,7 +66,7 @@
             id: confirm_password_field
             hint_text: "Confirm password"
             icon_right: "lock-check-outline"
-            mode: "outlined"
+            mode: "rectangle"
             password: True
             size_hint_x: 1
 
@@ -115,7 +115,7 @@
             MDFlatButton:
                 text: "LOG IN"
                 theme_text_color: "Custom"
-                text_color: app.theme_cls.primaryColor
+                text_color: app.theme_cls.primary_color
                 on_release: root.on_login_pressed()
 
         Widget:

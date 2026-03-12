@@ -19,14 +19,14 @@
 
     MDBoxLayout:
         orientation: "vertical"
-        md_bg_color: app.theme_cls.backgroundColor
+        md_bg_color: app.theme_cls.bg_normal
 
         # ── Top App Bar ───────────────────────────────────────
         MDTopAppBar:
             title: "My Profile"
             left_action_items:
                 [["arrow-left", lambda x: root.on_back_pressed(), "Back"]]
-            md_bg_color: app.theme_cls.primaryColor
+            md_bg_color: app.theme_cls.primary_color
             specific_text_color: 1, 1, 1, 1
             elevation: 2
 
@@ -44,13 +44,13 @@
                     halign: "center"
                     font_size: dp(80)
                     theme_text_color: "Custom"
-                    text_color: app.theme_cls.primaryColor
+                    text_color: app.theme_cls.primary_color
 
                 # ── Email (read-only) ─────────────────────────
                 MDTextField:
                     hint_text: "Email"
                     text: root.display_email
-                    mode: "outlined"
+                    mode: "rectangle"
                     icon_right: "email-outline"
                     readonly: True
                     size_hint_x: 1
@@ -60,7 +60,7 @@
                     id: name_field
                     hint_text: "Display name"
                     text: root.display_name
-                    mode: "outlined"
+                    mode: "rectangle"
                     icon_right: "account-outline"
                     size_hint_x: 1
 
@@ -108,5 +108,5 @@
                     text: "LOG OUT"
                     size_hint_x: 1
                     height: dp(50)
-                    md_bg_color: app.theme_cls.errorColor
+                    md_bg_color: app.theme_cls.error_color
                     on_release: root.on_signout_pressed()
