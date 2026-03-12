@@ -50,8 +50,10 @@ def _load_kv_files() -> None:
     """
     kv_files = [
         "login_screen.kv",
+        "signup_screen.kv",
         "home_screen.kv",
         "habit_card.kv",
+        "profile_screen.kv",
     ]
     for filename in kv_files:
         path = os.path.join(KV_DIR, filename)

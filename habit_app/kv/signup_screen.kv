@@ -1,0 +1,122 @@
+#:kivy 2.3
+#:import MDRaisedButton kivymd.uix.button.MDRaisedButton
+#:import MDTextField kivymd.uix.textfield.MDTextField
+#:import MDFlatButton kivymd.uix.button.MDFlatButton
+
+# ─────────────────────────────────────────────────────────────
+#  SignupScreen layout
+#  Bound to: habit_app.screens.signup_screen.SignupScreen
+# ─────────────────────────────────────────────────────────────
+
+<SignupScreen>:
+    name: "signup"
+
+    MDBoxLayout:
+        orientation: "vertical"
+        padding: dp(32)
+        spacing: dp(16)
+        md_bg_color: app.theme_cls.backgroundColor
+
+        Widget:
+            size_hint_y: 0.08  # top spacer
+
+        # ── Brand icon / title ────────────────────────────────
+        MDIcon:
+            icon: "account-plus-outline"
+            halign: "center"
+            font_size: dp(64)
+            theme_text_color: "Custom"
+            text_color: app.theme_cls.primaryColor
+
+        MDLabel:
+            text: "Create Account"
+            halign: "center"
+            font_style: "H5"
+            bold: True
+            theme_text_color: "Custom"
+            text_color: app.theme_cls.primaryColor
+
+        MDLabel:
+            text: "Start building better habits today."
+            halign: "center"
+            font_style: "Caption"
+            theme_text_color: "Secondary"
+
+        Widget:
+            size_hint_y: 0.04  # mid spacer
+
+        # ── Form ─────────────────────────────────────────────
+        MDTextField:
+            id: email_field
+            hint_text: "Email address"
+            icon_right: "email-outline"
+            mode: "outlined"
+            input_type: "mail"
+            size_hint_x: 1
+
+        MDTextField:
+            id: password_field
+            hint_text: "Password  (min 6 characters)"
+            icon_right: "lock-outline"
+            mode: "outlined"
+            password: True
+            size_hint_x: 1
+
+        MDTextField:
+            id: confirm_password_field
+            hint_text: "Confirm password"
+            icon_right: "lock-check-outline"
+            mode: "outlined"
+            password: True
+            size_hint_x: 1
+
+        # ── Error label ───────────────────────────────────────
+        MDLabel:
+            text: root.error_message
+            halign: "center"
+            theme_text_color: "Error"
+            font_style: "Caption"
+            size_hint_y: None
+            height: dp(20) if root.error_message else 0
+            opacity: 1 if root.error_message else 0
+
+        # ── Loading spinner ───────────────────────────────────
+        MDSpinner:
+            size_hint: None, None
+            size: dp(36), dp(36)
+            pos_hint: {"center_x": 0.5}
+            active: root.is_loading
+            opacity: 1 if root.is_loading else 0
+            size_hint_y: None
+            height: dp(36) if root.is_loading else 0
+
+        # ── Primary action ────────────────────────────────────
+        MDRaisedButton:
+            text: "CREATE ACCOUNT"
+            size_hint_x: 1
+            height: dp(50)
+            on_release: root.on_signup_pressed()
+            disabled: root.is_loading
+
+        # ── Back to login ─────────────────────────────────────
+        MDBoxLayout:
+            orientation: "horizontal"
+            size_hint_y: None
+            height: dp(36)
+            spacing: dp(4)
+            pos_hint: {"center_x": 0.5}
+
+            MDLabel:
+                text: "Already have an account?"
+                halign: "right"
+                font_style: "Caption"
+                theme_text_color: "Secondary"
+
+            MDFlatButton:
+                text: "LOG IN"
+                theme_text_color: "Custom"
+                text_color: app.theme_cls.primaryColor
+                on_release: root.on_login_pressed()
+
+        Widget:
+            size_hint_y: 0.04  # bottom spacer
