@@ -1,0 +1,88 @@
+#:kivy 2.3
+
+# ─────────────────────────────────────────────────────────────
+#  HabitCardWidget layout
+#  Bound to: habit_app.screens.habit_card_widget.HabitCardWidget
+# ─────────────────────────────────────────────────────────────
+
+<HabitCardWidget>:
+    size_hint_y: None
+    height: dp(96)
+    padding: dp(12)
+    spacing: dp(8)
+    ripple_behavior: True
+    elevation: 2
+    radius: [dp(12)]
+    md_bg_color: app.theme_cls.surfaceColor
+
+    # Tap anywhere on the card body → detail screen
+    on_release: root.handle_tap()
+
+    MDBoxLayout:
+        orientation: "horizontal"
+        spacing: dp(12)
+
+        # ── Icon badge ─────────────────────────────────────────
+        MDIcon:
+            icon: root.habit_icon
+            size_hint: None, None
+            size: dp(40), dp(40)
+            font_size: dp(32)
+            theme_text_color: "Custom"
+            text_color: app.theme_cls.primaryColor
+            valign: "middle"
+
+        # ── Name + progress bar ────────────────────────────────
+        MDBoxLayout:
+            orientation: "vertical"
+            spacing: dp(4)
+            adaptive_height: True
+            pos_hint: {"center_y": 0.5}
+
+            MDLabel:
+                text: root.habit_name
+                font_style: "Subtitle1"
+                bold: True
+                theme_text_color: "Primary"
+                size_hint_y: None
+                height: self.texture_size[1]
+
+            MDProgressBar:
+                value: root.percentage
+                max: 100
+                color: app.theme_cls.primaryColor if not root.is_complete else app.theme_cls.successColor
+
+            MDLabel:
+                text: f"{root.progress:.0f} / {root.goal_value:.0f}"
+                font_style: "Caption"
+                theme_text_color: "Secondary"
+                size_hint_y: None
+                height: self.texture_size[1]
+
+        # ── Increment / Decrement buttons ──────────────────────
+        MDBoxLayout:
+            orientation: "vertical"
+            size_hint_x: None
+            width: dp(40)
+            spacing: dp(4)
+
+            MDIconButton:
+                icon: "plus-circle-outline"
+                theme_text_color: "Custom"
+                text_color: app.theme_cls.primaryColor
+                on_release: root.handle_increment()
+
+            MDIconButton:
+                icon: "minus-circle-outline"
+                theme_text_color: "Secondary"
+                on_release: root.handle_decrement()
+
+        # ── Completion badge ────────────────────────────────────
+        MDIcon:
+            icon: "check-circle" if root.is_complete else "circle-outline"
+            size_hint: None, None
+            size: dp(28), dp(28)
+            font_size: dp(24)
+            theme_text_color: "Custom"
+            text_color: (0.3, 0.8, 0.3, 1) if root.is_complete else (0.8, 0.8, 0.8, 1)
+            valign: "middle"

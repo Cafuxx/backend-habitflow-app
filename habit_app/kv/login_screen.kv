@@ -1,0 +1,118 @@
+#:kivy 2.3
+#:import MDRaisedButton kivymd.uix.button.MDRaisedButton
+#:import MDTextField kivymd.uix.textfield.MDTextField
+
+# ─────────────────────────────────────────────────────────────
+#  LoginScreen layout
+#  Bound to: habit_app.screens.login_screen.LoginScreen
+# ─────────────────────────────────────────────────────────────
+
+<LoginScreen>:
+    name: "login"
+
+    MDBoxLayout:
+        orientation: "vertical"
+        padding: dp(32)
+        spacing: dp(16)
+        md_bg_color: app.theme_cls.backgroundColor
+
+        Widget:
+            size_hint_y: 0.12  # top spacer
+
+        # ── Brand logo / title ────────────────────────────────
+        MDIcon:
+            icon: "check-circle-outline"
+            halign: "center"
+            font_size: dp(72)
+            theme_text_color: "Custom"
+            text_color: app.theme_cls.primaryColor
+
+        MDLabel:
+            text: "HabitFlow"
+            halign: "center"
+            font_style: "H4"
+            bold: True
+            theme_text_color: "Custom"
+            text_color: app.theme_cls.primaryColor
+
+        MDLabel:
+            text: "Build better habits, one day at a time."
+            halign: "center"
+            font_style: "Caption"
+            theme_text_color: "Secondary"
+
+        Widget:
+            size_hint_y: 0.06  # mid spacer
+
+        # ── Form ─────────────────────────────────────────────
+        MDTextField:
+            id: email_field
+            hint_text: "Email address"
+            icon_right: "email-outline"
+            mode: "outlined"
+            input_type: "mail"
+            size_hint_x: 1
+
+        MDTextField:
+            id: password_field
+            hint_text: "Password"
+            icon_right: "lock-outline"
+            mode: "outlined"
+            password: True
+            size_hint_x: 1
+
+        # ── Error label ───────────────────────────────────────
+        MDLabel:
+            text: root.error_message
+            halign: "center"
+            theme_text_color: "Error"
+            font_style: "Caption"
+            size_hint_y: None
+            height: dp(20) if root.error_message else 0
+            opacity: 1 if root.error_message else 0
+
+        # ── Primary action ────────────────────────────────────
+        MDRaisedButton:
+            text: "LOG IN"
+            size_hint_x: 1
+            height: dp(50)
+            on_release: root.on_login_pressed()
+            disabled: root.is_loading
+            md_bg_color: app.theme_cls.primaryColor
+
+        # ── Loading indicator ─────────────────────────────────
+        MDSpinner:
+            size_hint: None, None
+            size: dp(24), dp(24)
+            pos_hint: {"center_x": 0.5}
+            active: root.is_loading
+            opacity: 1 if root.is_loading else 0
+
+        # ── Separator ─────────────────────────────────────────
+        MDBoxLayout:
+            size_hint_y: None
+            height: dp(1)
+            md_bg_color: app.theme_cls.dividerColor
+
+        # ── Signup link ───────────────────────────────────────
+        MDBoxLayout:
+            orientation: "horizontal"
+            size_hint_y: None
+            height: dp(40)
+            spacing: dp(4)
+            pos_hint: {"center_x": 0.5}
+
+            MDLabel:
+                text: "Don't have an account?"
+                halign: "right"
+                theme_text_color: "Secondary"
+                font_style: "Caption"
+
+            MDTextButton:
+                text: "Sign up"
+                on_release: root.on_signup_pressed()
+                theme_text_color: "Custom"
+                text_color: app.theme_cls.primaryColor
+
+        Widget:  # bottom spacer
+            size_hint_y: 0.1
